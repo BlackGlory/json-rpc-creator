@@ -1,6 +1,6 @@
 {
   "name": "json-rpc-creator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "JSON-RPC 2.0 data structures creator",
   "files": [
     "lib",
@@ -34,7 +34,6 @@
     "@rollup/plugin-typescript": "^4.1.2",
     "@types/jest": "^25.2.3",
     "husky": "^4.2.5",
-    "immer": "^6.0.9",
     "jest": "^26.0.1",
     "rollup": "^2.15.0",
     "rollup-plugin-terser": "^6.1.0",
