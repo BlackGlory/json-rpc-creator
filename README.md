@@ -1,2 +1,3 @@
 # json-rpc-creator
-Simple JSON-RPC creator with schema validation
+
+JSON-RPC 2.0 data structures creator
