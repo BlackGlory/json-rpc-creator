@@ -1,14 +1,16 @@
-export function request<T extends Json | StructuredClone>(id: Id, method: string, params?: Params<T>): IRequest<T>
-export function request<T extends Json | StructuredClone>(obj: Omit<IRequest<T>, 'jsonrpc'>): IRequest<T>
-export function request<T extends Json | StructuredClone>(idOrObj: Id | Omit<IRequest<T>, 'jsonrpc'>, method?: string, params?: Params<T>) {
+import { Json, StructuredClone, JsonRpcId, JsonRpcRequest, JsonRpcParams } from './typings'
+
+export function request<T extends Json | StructuredClone>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
+export function request<T extends Json | StructuredClone>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
+export function request<T extends Json | StructuredClone>(idOrObj: JsonRpcId | Omit<JsonRpcRequest<T>, 'jsonrpc'>, method?: string, params?: JsonRpcParams<T>) {
   if (idOrObj !== null && typeof idOrObj === 'object') {
     return normalize(idOrObj)
   } else {
     return create(idOrObj, method!, params!)
   }
 
-  function create(id: Id, method: string, params?: Params<T>): IRequest<T> {
-    const request: IRequest<T> = {
+  function create(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T> {
+    const request: JsonRpcRequest<T> = {
       jsonrpc: '2.0'
     , id
     , method
@@ -17,7 +19,7 @@ export function request<T extends Json | StructuredClone>(idOrObj: Id | Omit<IRe
     return request
   }
 
-  function normalize(obj: Omit<IRequest<T>, 'jsonrpc'>): IRequest<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as IRequest<T>
+  function normalize(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T> {
+    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcRequest<T>
   }
 }

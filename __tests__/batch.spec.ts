@@ -4,8 +4,8 @@ import { success } from '@src/success'
 import { error } from '@src/error'
 import { batch } from '@src/batch'
 
-describe('batch<T extends Json | StructuredClone>(...requests: Array<IRequest<T> | INotification<T>>): Array<IRequest<T> | INotification<T>>', () => {
-  it('return Array<IRequest<T> | INotification<T>>', () => {
+describe('batch<T extends Json | StructuredClone>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
+  it('return Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
     const result = batch(
       notification('hello')
     , request(0, 'hello')
@@ -25,8 +25,8 @@ describe('batch<T extends Json | StructuredClone>(...requests: Array<IRequest<T>
   })
 })
 
-describe('batch<T extends Json | StructuredClone>(...responses: Array<IResponse<T>>): Array<IResponse<T>>', () => {
-  it('return Array<IResponse<T>>', () => {
+describe('batch<T extends Json | StructuredClone>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>', () => {
+  it('return Array<JsonRpcResponse<T>>', () => {
     const result = batch(
       success(0, 'ok')
     , error(1, 404, 'not found')

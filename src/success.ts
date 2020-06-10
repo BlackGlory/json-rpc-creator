@@ -1,13 +1,15 @@
-export function success<T extends Json | StructuredClone>(id: Id, result: T): ISuccessResponse<T>
-export function success<T extends Json | StructuredClone>(obj: Omit<ISuccessResponse<T>, 'jsonrpc'>): ISuccessResponse<T>
-export function success<T extends Json | StructuredClone>(idOrObj: Id | Omit<ISuccessResponse<T>, 'jsonrpc'>, result?: T): ISuccessResponse<T> {
+import { Json, StructuredClone, JsonRpcId, JsonRpcSuccess } from './typings'
+
+export function success<T extends Json | StructuredClone>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
+export function success<T extends Json | StructuredClone>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
+export function success<T extends Json | StructuredClone>(idOrObj: JsonRpcId | Omit<JsonRpcSuccess<T>, 'jsonrpc'>, result?: T): JsonRpcSuccess<T> {
   if (idOrObj !== null && typeof idOrObj === 'object') {
     return normalize(idOrObj)
   } else {
     return create(idOrObj, result!)
   }
 
-  function create(id: Id, result: T): ISuccessResponse<T> {
+  function create(id: JsonRpcId, result: T): JsonRpcSuccess<T> {
     return {
       jsonrpc: '2.0'
     , id
@@ -15,7 +17,7 @@ export function success<T extends Json | StructuredClone>(idOrObj: Id | Omit<ISu
     }
   }
 
-  function normalize(obj: Omit<ISuccessResponse<T>, 'jsonrpc'>): ISuccessResponse<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as ISuccessResponse<T>
+  function normalize(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T> {
+    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcSuccess<T>
   }
 }

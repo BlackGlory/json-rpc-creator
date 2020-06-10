@@ -1,61 +1,61 @@
 import { error } from '@src/error'
 
-describe("error<T extends Json | StructuredClone>(obj: Omit<IErrorResponse<T>, 'jsonrpc'>): IErrorResponse<T>", () => {
-  it('return IErrorResponse', () => {
-    const result = error({ id: 0, error: { code: 404, message: 'Not Found' }})
+describe("error<T extends Json | StructuredClone>(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>", () => {
+  it('return JsonRpcError', () => {
+    const result = error({ id: 0, error: { code: 404, message: 'not found' }})
 
     expect(result).toStrictEqual({
       jsonrpc: '2.0'
     , id: 0
     , error: {
         code: 404
-      , message: 'Not Found'
+      , message: 'not found'
       }
     })
   })
 })
 
-describe('error<T extends Json | StructuredClone>(id: Id, error: IError<T>): IErrorResponse<T>', () => {
-  it('return IErrorResponse', () => {
-    const result = error(0, { code: 404, message: 'Not Found' })
+describe('error<T extends Json | StructuredClone>(id: Id, error: JsonRpcErrorObject<T>): JsonRpcError<T>', () => {
+  it('return JsonRpcError', () => {
+    const result = error(0, { code: 404, message: 'not found' })
 
     expect(result).toStrictEqual({
       jsonrpc: '2.0'
     , id: 0
     , error: {
         code: 404
-      , message: 'Not Found'
+      , message: 'not found'
       }
     })
   })
 })
 
-describe('error<T extends Json | StructuredClone>(id: Id, code: number, message: string, data?: T): IErrorResponse<T>', () => {
+describe('error<T extends Json | StructuredClone>(id: Id, code: number, message: string, data?: T): JsonRpcError<T>', () => {
   describe('data is undefined', () => {
-    it('return IErrorResponse', () => {
-      const result = error(0, 404, 'Not Found')
+    it('return JsonRpcError', () => {
+      const result = error(0, 404, 'not found')
 
       expect(result).toStrictEqual({
         jsonrpc: '2.0'
       , id: 0
       , error: {
           code: 404
-        , message: 'Not Found'
+        , message: 'not found'
         }
       })
     })
   })
 
   describe('data isnt undefined', () => {
-    it('return IErrorResponse', () => {
-      const result = error(0, 404, 'Not Found', { url: 'https://google.com' })
+    it('return JsonRpcError', () => {
+      const result = error(0, 404, 'not found', { url: 'https://google.com' })
 
       expect(result).toStrictEqual({
         jsonrpc: '2.0'
       , id: 0
       , error: {
           code: 404
-        , message: 'Not Found'
+        , message: 'not found'
         , data: {
             url: 'https://google.com'
           }

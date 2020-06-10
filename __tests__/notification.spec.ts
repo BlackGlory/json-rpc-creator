@@ -1,7 +1,7 @@
 import { notification } from '@src/notification'
 
-describe("notification<T extends Json | StructuredClone>(obj: Omit<INotification<T>, 'jsonrpc'>): INotification<T>", () => {
-  it('return INotification', () => {
+describe("notification<T extends Json | StructuredClone>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>", () => {
+  it('return JsonRpcNotification', () => {
     const result = notification({ method: 'hello' })
 
     expect(result).toStrictEqual({
@@ -11,9 +11,9 @@ describe("notification<T extends Json | StructuredClone>(obj: Omit<INotification
   })
 })
 
-describe('notification<T extends Json | StructuredClone>(method: string, params?: Params<T>): INotification<T>', () => {
+describe('notification<T extends Json | StructuredClone>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>', () => {
   describe('params is undefined', () => {
-    it('return INotification', () => {
+    it('return JsonRpcNotification', () => {
       const result = notification('hello')
 
       expect(result).toStrictEqual({
@@ -24,7 +24,7 @@ describe('notification<T extends Json | StructuredClone>(method: string, params?
   })
 
   describe('params isnt undefined', () => {
-    it('return INotification', () => {
+    it('return JsonRpcNotification', () => {
       const result = notification('hello', ['world'])
 
       expect(result).toStrictEqual({

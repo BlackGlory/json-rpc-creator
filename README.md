@@ -15,35 +15,35 @@ yarn add json-rpc-creator
 ### notification
 
 ```ts
-function notification<T extends Json | StructuredClone>(method: string, params?: Params<T>): INotification<T>
-function notification<T extends Json | StructuredClone>(obj: Omit<INotification<T>, 'jsonrpc'>): INotification<T>
+function notification<T extends Json | StructuredClone>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
+function notification<T extends Json | StructuredClone>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
 ```
 
 ### request
 
 ```ts
-function request<T extends Json | StructuredClone>(id: Id, method: string, params?: Params<T>): IRequest<T>
-function request<T extends Json | StructuredClone>(obj: Omit<IRequest<T>, 'jsonrpc'>): IRequest<T>
+function request<T extends Json | StructuredClone>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
+function request<T extends Json | StructuredClone>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
 ```
 
 ### success
 
 ```ts
-function success<T extends Json | StructuredClone>(id: Id, result: T): ISuccessResponse<T>
-function success<T extends Json | StructuredClone>(obj: Omit<ISuccessResponse<T>, 'jsonrpc'>): ISuccessResponse<T>
+function success<T extends Json | StructuredClone>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
+function success<T extends Json | StructuredClone>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
 ```
 
 ### error
 
 ```ts
-function error<T extends Json | StructuredClone>(id: Id, code: number, message: string, data?: T): IErrorResponse<T>
-function error<T extends Json | StructuredClone>(id: Id, error: IError<T>): IErrorResponse<T>
-function error<T extends Json | StructuredClone>(obj: Omit<IErrorResponse<T>, 'jsonrpc'>): IErrorResponse<T>
+function error<T extends Json | StructuredClone>(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>
+function error<T extends Json | StructuredClone>(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>
+function error<T extends Json | StructuredClone>(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>
 ```
 
 ### batch
 
 ```ts
-function batch<T extends Json | StructuredClone>(...requests: Array<IRequest<T> | INotification<T>>): Array<IRequest<T> | INotification<T>>
-function batch<T extends Json | StructuredClone>(...responses: Array<IResponse<T>>): Array<IResponse<T>>
+function batch<T extends Json | StructuredClone>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>
+function batch<T extends Json | StructuredClone>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>
 ```

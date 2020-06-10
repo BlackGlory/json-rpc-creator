@@ -1,18 +1,20 @@
-export function error<T extends Json | StructuredClone>(id: Id, code: number, message: string, data?: T): IErrorResponse<T>
-export function error<T extends Json | StructuredClone>(id: Id, error: IError<T>): IErrorResponse<T>
-export function error<T extends Json | StructuredClone>(obj: Omit<IErrorResponse<T>, 'jsonrpc'>): IErrorResponse<T>
-export function error<T extends Json | StructuredClone>(idOrObj: Id | Omit<IErrorResponse<T>, 'jsonrpc'>, errorOrCode?: IError<T> | number, message?: string, data?: T): IErrorResponse<T> {
+import { Json, StructuredClone, JsonRpcId, JsonRpcError, JsonRpcErrorObject } from './typings'
+
+export function error<T extends Json | StructuredClone>(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>
+export function error<T extends Json | StructuredClone>(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>
+export function error<T extends Json | StructuredClone>(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>
+export function error<T extends Json | StructuredClone>(idOrObj: JsonRpcId | Omit<JsonRpcError<T>, 'jsonrpc'>, errorOrCode?: JsonRpcErrorObject<T> | number, message?: string, data?: T): JsonRpcError<T> {
   if (idOrObj !== null && typeof idOrObj === 'object') {
     return normalize(idOrObj)
   } else {
     return create(idOrObj, errorOrCode!, message, data)
   }
 
-  function normalize(obj: Omit<IErrorResponse<T>, 'jsonrpc'>): IErrorResponse<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as IErrorResponse<T>
+  function normalize(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T> {
+    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcError<T>
   }
 
-  function create(id: Id, errorOrCode: IError<T> | number, message?: string, data?: T): IErrorResponse<T> {
+  function create(id: JsonRpcId, errorOrCode: JsonRpcErrorObject<T> | number, message?: string, data?: T): JsonRpcError<T> {
     return {
       jsonrpc: '2.0'
     , id
@@ -22,7 +24,7 @@ export function error<T extends Json | StructuredClone>(idOrObj: Id | Omit<IErro
     function getError() {
       if (typeof errorOrCode === 'number') {
         const code = errorOrCode
-        const result: IError<T> = {
+        const result: JsonRpcErrorObject<T> = {
           code
         , message: message!
         }
