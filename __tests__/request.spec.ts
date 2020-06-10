@@ -1,6 +1,6 @@
 import { request } from '@src/request'
 
-describe("request<T extends Json | StructuredClone>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>", () => {
+describe("request<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>", () => {
   it('return JsonRpcRequest', () => {
     const result = request({ id: 0, method: 'hello' })
 
@@ -12,7 +12,7 @@ describe("request<T extends Json | StructuredClone>(obj: Omit<JsonRpcRequest<T>,
   })
 })
 
-describe('request<T extends Json | StructuredClone>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>', () => {
+describe('request<T extends Json | StructuredClone = Json>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>', () => {
   describe('params is undefined', () => {
     it('return JsonRpcRequest', () => {
       const result = request(0, 'hello')

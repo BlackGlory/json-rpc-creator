@@ -1,6 +1,6 @@
 import { notification } from '@src/notification'
 
-describe("notification<T extends Json | StructuredClone>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>", () => {
+describe("notification<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>", () => {
   it('return JsonRpcNotification', () => {
     const result = notification({ method: 'hello' })
 
@@ -11,7 +11,7 @@ describe("notification<T extends Json | StructuredClone>(obj: Omit<JsonRpcNotifi
   })
 })
 
-describe('notification<T extends Json | StructuredClone>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>', () => {
+describe('notification<T extends Json | StructuredClone = Json>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>', () => {
   describe('params is undefined', () => {
     it('return JsonRpcNotification', () => {
       const result = notification('hello')

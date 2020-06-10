@@ -4,7 +4,7 @@ import { success } from '@src/success'
 import { error } from '@src/error'
 import { batch } from '@src/batch'
 
-describe('batch<T extends Json | StructuredClone>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
+describe('batch<T extends Json | StructuredClone = Json>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
   it('return Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
     const result = batch(
       notification('hello')
@@ -25,7 +25,7 @@ describe('batch<T extends Json | StructuredClone>(...requests: Array<JsonRpcRequ
   })
 })
 
-describe('batch<T extends Json | StructuredClone>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>', () => {
+describe('batch<T extends Json | StructuredClone = Json>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>', () => {
   it('return Array<JsonRpcResponse<T>>', () => {
     const result = batch(
       success(0, 'ok')
