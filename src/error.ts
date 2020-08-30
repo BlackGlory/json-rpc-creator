@@ -11,7 +11,10 @@ export function error<T extends Json | StructuredClone = Json>(idOrObj: JsonRpcI
   }
 
   function normalize(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcError<T>
+    return {
+      jsonrpc: '2.0'
+    , ...obj
+    }
   }
 
   function create(id: JsonRpcId, errorOrCode: JsonRpcErrorObject<T> | number, message?: string, data?: T): JsonRpcError<T> {

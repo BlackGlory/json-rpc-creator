@@ -20,6 +20,9 @@ export function request<T extends Json | StructuredClone = Json>(idOrObj: JsonRp
   }
 
   function normalize(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcRequest<T>
+    return {
+      jsonrpc: '2.0'
+    , ...obj
+    }
   }
 }

@@ -19,6 +19,9 @@ export function notification<T extends Json | StructuredClone = Json>(methodOrOb
   }
 
   function normalize(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcNotification<T>
+    return {
+      jsonrpc: '2.0'
+    , ...obj
+    }
   }
 }

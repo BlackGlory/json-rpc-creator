@@ -18,6 +18,9 @@ export function success<T extends Json | StructuredClone = Json>(idOrObj: JsonRp
   }
 
   function normalize(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T> {
-    return Object.assign({ jsonrpc: '2.0' }, obj) as JsonRpcSuccess<T>
+    return {
+      jsonrpc: '2.0'
+    , ...obj
+    }
   }
 }
