@@ -1,5 +1,3 @@
-export * from './typings'
-
 export * from './notification'
 export * from './request'
 

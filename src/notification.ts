@@ -1,8 +1,8 @@
-import { Json, StructuredClone, JsonRpcNotification, JsonRpcParams } from './typings'
+import { JsonRpcNotification, JsonRpcParams } from '@blackglory/types'
 
-export function notification<T extends Json | StructuredClone = Json>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
-export function notification<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
-export function notification<T extends Json | StructuredClone = Json>(methodOrObj: string | Omit<JsonRpcNotification<T>, 'jsonrpc'>, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
+export function notification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
+export function notification<T>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
+export function notification<T>(methodOrObj: string | Omit<JsonRpcNotification<T>, 'jsonrpc'>, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
   if (methodOrObj !== null && typeof methodOrObj === 'object') {
     return normalize(methodOrObj)
   } else {

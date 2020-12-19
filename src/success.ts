@@ -1,8 +1,8 @@
-import { Json, StructuredClone, JsonRpcId, JsonRpcSuccess } from './typings'
+import { JsonRpcId, JsonRpcSuccess } from '@blackglory/types'
 
-export function success<T extends Json | StructuredClone = Json>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
-export function success<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
-export function success<T extends Json | StructuredClone = Json>(idOrObj: JsonRpcId | Omit<JsonRpcSuccess<T>, 'jsonrpc'>, result?: T): JsonRpcSuccess<T> {
+export function success<T>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
+export function success<T>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
+export function success<T>(idOrObj: JsonRpcId | Omit<JsonRpcSuccess<T>, 'jsonrpc'>, result?: T): JsonRpcSuccess<T> {
   if (idOrObj !== null && typeof idOrObj === 'object') {
     return normalize(idOrObj)
   } else {
