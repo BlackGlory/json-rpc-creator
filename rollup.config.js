@@ -1,4 +1,6 @@
 import typescript from '@rollup/plugin-typescript'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 
 const UMD_NAME = 'JsonRpcCreator'
@@ -10,6 +12,8 @@ function createOptions({ directory, target }) {
     , output: createOutput('index')
     , plugins: [
         typescript({ target })
+      , resolve()
+      , commonjs()
       ]
     }
   , {
@@ -17,6 +21,8 @@ function createOptions({ directory, target }) {
     , output: createMinification('index')
     , plugins: [
         typescript({ target })
+      , resolve()
+      , commonjs()
       , terser()
       ]
     }
@@ -37,7 +43,7 @@ function createOptions({ directory, target }) {
       }
     ]
   }
-
+  k
   function createMinification(name) {
     return [
       {
@@ -59,5 +65,9 @@ export default [
   ...createOptions({
     directory: 'es2015'
   , target: 'ES2015'
+  })
+, ...createOptions({
+    directory: 'es2018'
+  , target: 'ES2018'
   })
 ]
