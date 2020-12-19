@@ -15,35 +15,35 @@ yarn add json-rpc-creator
 ### notification
 
 ```ts
-function notification<T extends Json | StructuredClone = Json>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
-function notification<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
+function notification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
+function notification<T>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
 ```
 
 ### request
 
 ```ts
-function request<T extends Json | StructuredClone = Json>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
-function request<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
+function request<T>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
+function request<T>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
 ```
 
 ### success
 
 ```ts
-function success<T extends Json | StructuredClone = Json>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
-function success<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
+function success<T>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
+function success<T>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
 ```
 
 ### error
 
 ```ts
-function error<T extends Json | StructuredClone = Json>(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>
-function error<T extends Json | StructuredClone = Json>(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>
-function error<T extends Json | StructuredClone = Json>(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>
+function error<T>(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>
+function error<T>(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>
+function error<T>(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>
 ```
 
 ### batch
 
 ```ts
-function batch<T extends Json | StructuredClone = Json>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>
-function batch<T extends Json | StructuredClone = Json>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>
+function batch<T>(...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>
+function batch<T>(...responses: Array<JsonRpcResponse<T>>): Array<JsonRpcResponse<T>>
 ```
