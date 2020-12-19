@@ -1,15 +1,15 @@
 {
   "name": "json-rpc-creator",
   "version": "2.2.1",
-  "description": "JSON-RPC 2.0 data structures creator",
+  "description": "JSON-RPC 2.0 objects creator",
   "files": [
     "lib",
     "dist"
   ],
-  "main": "lib/es2015/index.js",
-  "typings": "lib/es2015/index.d.ts",
-  "module": "dist/es2015/index.mjs",
-  "browser": "dist/es2015/index.umd.js",
+  "main": "lib/es2018/index.js",
+  "typings": "lib/es2018/index.d.ts",
+  "module": "dist/es2018/index.mjs",
+  "browser": "dist/es2018/index.umd.js",
   "repository": "git@github.com:BlackGlory/json-rpc-creator",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
