@@ -1,6 +1,8 @@
 import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
+const UMD_NAME = 'JsonRpcCreator'
+
 function createOptions({ directory, target }) {
   return [
     {
@@ -30,7 +32,7 @@ function createOptions({ directory, target }) {
     , {
         file: `dist/${directory}/${name}.umd.js`
       , format: 'umd'
-      , name: 'JsonRpcCreator'
+      , name: UMD_NAME
       , sourcemap: true
       }
     ]
@@ -46,7 +48,7 @@ function createOptions({ directory, target }) {
     , {
         file: `dist/${directory}/${name}.umd.min.js`
       , format: 'umd'
-      , name: 'JsonRpcCreator'
+      , name: UMD_NAME
       , sourcemap: true
       }
     ]
