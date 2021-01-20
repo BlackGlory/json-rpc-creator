@@ -1,6 +1,6 @@
 {
   "name": "json-rpc-creator",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "JSON-RPC 2.0 objects creator",
   "files": [
     "lib",
