@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
 import analyze from 'rollup-plugin-analyzer'
 import replace from '@rollup/plugin-replace'
@@ -26,6 +27,7 @@ function createOptions({ directory, target }) {
     })
   , resolve({ browser: true })
   , commonjs()
+  , json()
   , typescript({ target })
   ]
 
