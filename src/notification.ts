@@ -1,12 +1,12 @@
-import { JsonRpcNotification, JsonRpcParams } from '@blackglory/types'
+import { JsonRpcNotification, JsonRpcParams, isObject } from '@blackglory/types'
 
 export function notification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
 export function notification<T>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
-export function notification<T>(methodOrObj: string | Omit<JsonRpcNotification<T>, 'jsonrpc'>, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
-  if (methodOrObj !== null && typeof methodOrObj === 'object') {
-    return normalize(methodOrObj)
+export function notification<T>(param: string | Omit<JsonRpcNotification<T>, 'jsonrpc'>, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
+  if (isObject(param)) {
+    return normalize(param as Omit<JsonRpcNotification<T>, 'jsonrpc'>)
   } else {
-    return create(methodOrObj, params)
+    return create(param, params)
   }
 
   function create(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T> {

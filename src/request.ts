@@ -1,12 +1,12 @@
-import { JsonRpcId, JsonRpcRequest, JsonRpcParams } from '@blackglory/types'
+import { JsonRpcId, JsonRpcRequest, JsonRpcParams, isObject } from '@blackglory/types'
 
 export function request<T>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
 export function request<T>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
-export function request<T>(idOrObj: JsonRpcId | Omit<JsonRpcRequest<T>, 'jsonrpc'>, method?: string, params?: JsonRpcParams<T>) {
-  if (idOrObj !== null && typeof idOrObj === 'object') {
-    return normalize(idOrObj)
+export function request<T>(param: JsonRpcId | Omit<JsonRpcRequest<T>, 'jsonrpc'>, method?: string, params?: JsonRpcParams<T>) {
+  if (isObject(param)) {
+    return normalize(param as Omit<JsonRpcRequest<T>, 'jsonrpc'>)
   } else {
-    return create(idOrObj, method!, params!)
+    return create(param, method!, params!)
   }
 
   function create(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T> {

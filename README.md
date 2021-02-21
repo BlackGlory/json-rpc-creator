@@ -1,6 +1,8 @@
 # json-rpc-creator
 
-JSON-RPC 2.0 data structures creator
+JSON-RPC 2.0 data structures creator.
+
+**The module does not check types, nor convert unsupported types (e.g., `undefined` to `null`). This is to allow JSON-RPC to support as many types and protocols as possible.**
 
 ## Install
 
