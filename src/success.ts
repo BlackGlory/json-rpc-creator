@@ -1,26 +1,31 @@
-import { JsonRpcId, JsonRpcSuccess, isObject } from '@blackglory/types'
+import { JsonRpcId, JsonRpcSuccess } from 'justypes'
 
 export function success<T>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
 export function success<T>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>
-export function success<T>(param: JsonRpcId | Omit<JsonRpcSuccess<T>, 'jsonrpc'>, result?: T): JsonRpcSuccess<T> {
-  if (isObject(param)) {
-    return normalize(param as Omit<JsonRpcSuccess<T>, 'jsonrpc'>)
+export function success<T>(...args:
+| [id: JsonRpcId, result: T]
+| [obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>]
+) {
+  if (args.length === 1) {
+    const [obj] = args
+    return normalizeSuccess(obj)
   } else {
-    return create(param, result!)
+    const [id, result] = args
+    return createSuccess(id, result)
   }
+}
 
-  function create(id: JsonRpcId, result: T): JsonRpcSuccess<T> {
-    return {
-      jsonrpc: '2.0'
-    , id
-    , result
-    }
+function createSuccess<T>(id: JsonRpcId, result: T): JsonRpcSuccess<T> {
+  return {
+    jsonrpc: '2.0'
+  , id
+  , result
   }
+}
 
-  function normalize(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T> {
-    return {
-      jsonrpc: '2.0'
-    , ...obj
-    }
+function normalizeSuccess<T>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T> {
+  return {
+    jsonrpc: '2.0'
+  , ...obj
   }
 }

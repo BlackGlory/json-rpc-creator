@@ -1,27 +1,34 @@
-import { JsonRpcNotification, JsonRpcParams, isObject } from '@blackglory/types'
+import { isString } from '@blackglory/types'
+import { JsonRpcNotification, JsonRpcParams } from 'justypes'
 
 export function notification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>
 export function notification<T>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>
-export function notification<T>(param: string | Omit<JsonRpcNotification<T>, 'jsonrpc'>, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
-  if (isObject(param)) {
-    return normalize(param as Omit<JsonRpcNotification<T>, 'jsonrpc'>)
+export function notification<T>(...args:
+| [method: string, params?: JsonRpcParams<T>]
+| [obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>]
+) {
+  if (isString(args[0])) {
+    const [method, params] = args
+    return createNotification(method, params)
   } else {
-    return create(param, params)
+    const [obj] = args
+    return normalizeNotification(obj)
   }
+}
 
-  function create(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
-    const request: JsonRpcNotification<T> = {
-      jsonrpc: '2.0'
-    , method
-    }
-    if (params) request.params = params
-    return request
+function createNotification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T> {
+  const request: JsonRpcNotification<T> = {
+    jsonrpc: '2.0'
+  , method
   }
+  if (params) request.params = params
 
-  function normalize(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T> {
-    return {
-      jsonrpc: '2.0'
-    , ...obj
-    }
+  return request
+}
+
+function normalizeNotification<T>(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T> {
+  return {
+    jsonrpc: '2.0'
+  , ...obj
   }
 }
