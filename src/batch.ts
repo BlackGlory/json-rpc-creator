@@ -1,4 +1,4 @@
-import { JsonRpcRequest, JsonRpcNotification, JsonRpcResponse } from 'justypes'
+import { JsonRpcRequest, JsonRpcNotification, JsonRpcResponse } from 'json-rpc-types'
 
 export function batch<T>(
   ...requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>

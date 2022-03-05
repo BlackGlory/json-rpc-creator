@@ -1,4 +1,4 @@
-import { JsonRpcId, JsonRpcSuccess } from 'justypes'
+import { JsonRpcId, JsonRpcSuccess } from 'json-rpc-types'
 
 export function success<T>(id: JsonRpcId, result: T): JsonRpcSuccess<T>
 export function success<T>(obj: Omit<JsonRpcSuccess<T>, 'jsonrpc'>): JsonRpcSuccess<T>

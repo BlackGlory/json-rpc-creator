@@ -1,4 +1,4 @@
-import { JsonRpcId, JsonRpcRequest, JsonRpcParams } from 'justypes'
+import { JsonRpcId, JsonRpcRequest, JsonRpcParams } from 'json-rpc-types'
 
 export function request<T>(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>
 export function request<T>(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>
