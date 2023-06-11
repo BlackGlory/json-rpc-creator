@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.16](https://github.com/BlackGlory/json-rpc-creator/compare/v3.0.15...v3.0.16) (2023-06-11)
+
+
+### Bug Fixes
+
+* export src ([e4326bb](https://github.com/BlackGlory/json-rpc-creator/commit/e4326bba1b5167b6a20ac57d6cf47a6d829b5d90))
+
 ### [3.0.15](https://github.com/BlackGlory/json-rpc-creator/compare/v3.0.14...v3.0.15) (2022-08-01)
 
 ### [3.0.14](https://github.com/BlackGlory/json-rpc-creator/compare/v3.0.13...v3.0.14) (2022-03-05)
