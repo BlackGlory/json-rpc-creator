@@ -2,7 +2,10 @@
   "name": "json-rpc-creator",
   "version": "3.0.15",
   "description": "JSON-RPC 2.0 objects creator",
-  "files": ["lib"],
+  "files": [
+    "lib",
+    "src"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "git@github.com:BlackGlory/json-rpc-creator",
