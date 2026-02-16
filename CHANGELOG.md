@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/BlackGlory/json-rpc-creator/compare/v3.0.16...v4.0.0) (2026-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* - CommonJS => ESM
+- Node.js v14 => Node.js v22
+
+* upgrade dependencies ([4a06ea3](https://github.com/BlackGlory/json-rpc-creator/commit/4a06ea36a8f6a81a458c2dad32c639ff5a1a777a))
+
 ### [3.0.16](https://github.com/BlackGlory/json-rpc-creator/compare/v3.0.15...v3.0.16) (2023-06-11)
 
 
