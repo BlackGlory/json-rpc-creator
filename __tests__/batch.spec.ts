@@ -1,8 +1,9 @@
-import { notification } from '@src/notification'
-import { request } from '@src/request'
-import { success } from '@src/success'
-import { error } from '@src/error'
-import { batch } from '@src/batch'
+import { test, expect } from 'vitest'
+import { notification } from '@src/notification.js'
+import { request } from '@src/request.js'
+import { success } from '@src/success.js'
+import { error } from '@src/error.js'
+import { batch } from '@src/batch.js'
 
 test('batch(requests: Array<JsonRpcRequest<T> | JsonRpcNotification<T>>): Array<JsonRpcRequest<T> | JsonRpcNotification<T>>', () => {
   const result = batch(

@@ -1,4 +1,5 @@
-import { request } from '@src/request'
+import { describe, test, expect } from 'vitest'
+import { request } from '@src/request.js'
 
 test("request(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>", () => {
   const result = request({ id: 0, method: 'hello' })

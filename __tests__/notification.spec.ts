@@ -1,4 +1,5 @@
-import { notification } from '@src/notification'
+import { describe, test, expect } from 'vitest'
+import { notification } from '@src/notification.js'
 
 test("notification(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>", () => {
   const result = notification({ method: 'hello' })

@@ -1,4 +1,4 @@
-import { isString } from '@blackglory/types'
+import { isString } from '@blackglory/prelude'
 import { JsonRpcNotification, JsonRpcParams } from 'json-rpc-types'
 
 export function notification<T>(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>

@@ -1,4 +1,5 @@
-import { error } from '@src/error'
+import { describe, test, expect } from 'vitest'
+import { error } from '@src/error.js'
 
 test("error(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>", () => {
   const result = error({ id: 0, error: { code: 404, message: 'not found' }})

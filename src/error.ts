@@ -1,4 +1,4 @@
-import { isntUndefined } from '@blackglory/types'
+import { isntUndefined } from '@blackglory/prelude'
 import { JsonRpcId, JsonRpcError, JsonRpcErrorObject } from 'json-rpc-types'
 
 export function error<T>(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>

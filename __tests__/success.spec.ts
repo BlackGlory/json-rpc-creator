@@ -1,4 +1,5 @@
-import { success } from '@src/success'
+import { test, expect } from 'vitest'
+import { success } from '@src/success.js'
 
 test("success(obj: Omit<JsonRpcSuccessResponse<T>, 'jsonrpc'>): JsonRpcSuccessResponse<T>", () => {
   const result = success({ id: 0, result: 'ok' })
