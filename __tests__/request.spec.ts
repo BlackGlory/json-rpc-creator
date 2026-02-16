@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { request } from '@src/request.js'
+import { isJsonRpcRequest } from 'json-rpc-types'
 
 test("request(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>", () => {
   const result = request({ id: 0, method: 'hello' })
@@ -9,6 +10,7 @@ test("request(obj: Omit<JsonRpcRequest<T>, 'jsonrpc'>): JsonRpcRequest<T>", () =
   , id: 0
   , method: 'hello'
   })
+  expect(isJsonRpcRequest(result)).toBe(true)
 })
 
 describe('request(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): JsonRpcRequest<T>', () => {
@@ -20,6 +22,7 @@ describe('request(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): Jso
     , id: 0
     , method: 'hello'
     })
+    expect(isJsonRpcRequest(result)).toBe(true)
   })
 
   test('params isnt undefined', () => {
@@ -31,5 +34,6 @@ describe('request(id: JsonRpcId, method: string, params?: JsonRpcParams<T>): Jso
     , method: 'hello'
     , params: ['world']
     })
+    expect(isJsonRpcRequest(result)).toBe(true)
   })
 })

@@ -1,5 +1,6 @@
 import { test, expect } from 'vitest'
 import { success } from '@src/success.js'
+import { isJsonRpcSuccess } from 'json-rpc-types'
 
 test("success(obj: Omit<JsonRpcSuccessResponse<T>, 'jsonrpc'>): JsonRpcSuccessResponse<T>", () => {
   const result = success({ id: 0, result: 'ok' })
@@ -9,6 +10,7 @@ test("success(obj: Omit<JsonRpcSuccessResponse<T>, 'jsonrpc'>): JsonRpcSuccessRe
   , id: 0
   , result: 'ok'
   })
+  expect(isJsonRpcSuccess(result)).toBe(true)
 })
 
 test('success(id: JsonRpcId, result: T): JsonRpcSuccessResponse<T>', () => {
@@ -19,4 +21,5 @@ test('success(id: JsonRpcId, result: T): JsonRpcSuccessResponse<T>', () => {
   , id: 0
   , result: 'ok'
   })
+  expect(isJsonRpcSuccess(result)).toBe(true)
 })

@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { notification } from '@src/notification.js'
+import { isJsonRpcNotification } from 'json-rpc-types'
 
 test("notification(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotification<T>", () => {
   const result = notification({ method: 'hello' })
@@ -8,6 +9,7 @@ test("notification(obj: Omit<JsonRpcNotification<T>, 'jsonrpc'>): JsonRpcNotific
     jsonrpc: '2.0'
   , method: 'hello'
   })
+  expect(isJsonRpcNotification(result)).toBe(true)
 })
 
 describe('notification<T(method: string, params?: JsonRpcParams<T>): JsonRpcNotification<T>', () => {
@@ -18,6 +20,7 @@ describe('notification<T(method: string, params?: JsonRpcParams<T>): JsonRpcNoti
       jsonrpc: '2.0'
     , method: 'hello'
     })
+    expect(isJsonRpcNotification(result)).toBe(true)
   })
 
   test('params isnt undefined', () => {
@@ -28,5 +31,6 @@ describe('notification<T(method: string, params?: JsonRpcParams<T>): JsonRpcNoti
     , method: 'hello'
     , params: ['world']
     })
+    expect(isJsonRpcNotification(result)).toBe(true)
   })
 })

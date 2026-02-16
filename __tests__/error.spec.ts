@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { error } from '@src/error.js'
+import { isJsonRpcError } from 'json-rpc-types'
 
 test("error(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>", () => {
   const result = error({ id: 0, error: { code: 404, message: 'not found' }})
@@ -12,6 +13,7 @@ test("error(obj: Omit<JsonRpcError<T>, 'jsonrpc'>): JsonRpcError<T>", () => {
     , message: 'not found'
     }
   })
+  expect(isJsonRpcError(result)).toBe(true)
 })
 
 test('error(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>', () => {
@@ -25,6 +27,7 @@ test('error(id: JsonRpcId, error: JsonRpcErrorObject<T>): JsonRpcError<T>', () =
     , message: 'not found'
     }
   })
+  expect(isJsonRpcError(result)).toBe(true)
 })
 
 describe('error(id: JsonRpcId, code: number, message: string, data?: T): JsonRpcError<T>', () => {
@@ -39,6 +42,7 @@ describe('error(id: JsonRpcId, code: number, message: string, data?: T): JsonRpc
       , message: 'not found'
       }
     })
+    expect(isJsonRpcError(result)).toBe(true)
   })
 
   test('data isnt undefined', () => {
@@ -55,5 +59,6 @@ describe('error(id: JsonRpcId, code: number, message: string, data?: T): JsonRpc
         }
       }
     })
+    expect(isJsonRpcError(result)).toBe(true)
   })
 })
